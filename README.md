@@ -3,9 +3,9 @@ esp32, esp8266, P9813
 
 # Зависимости
 1. Arduino IDE 2.3.2
-2. Blynk (у меня не работала установка черезе библиотеку Arduino IDE, поэтому для установки распаковал [релиз](https://github.com/blynkkk/blynk-library/releases), т.е. Blynk, BlynkESP8266_Lib и т.д., в `Документы\Arduino\libraries`)
-3. FastLed (через библиотеку Arduino IDE)
-4. В менеджер плат нужно указать `https://arduino.esp8266.com/stable/package_esp8266com_index.json` или `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`, потом скачать соответствующие платы
+2. Blynk (у меня не работала установка через менеджер библиотек Arduino IDE, поэтому для установки распаковал [релиз](https://github.com/blynkkk/blynk-library/releases), т.е. Blynk, BlynkESP8266_Lib и т.д., в `Документы\Arduino\libraries`)
+3. FastLed (через менеджер Arduino IDE)
+4. В менеджер плат нужно указать `https://arduino.esp8266.com/stable/package_esp8266com_index.json` или `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`, потом скачать соответствующие настройки для плат через менеджер плат в Arduino IDE
 5. Драйвер для загрузчика на плате. Многие платы используют CH340. Скачать и установить его.
 
 Настройки для загрузчика
