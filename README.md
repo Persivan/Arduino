@@ -9,9 +9,10 @@ esp32, esp8266, P9813
 5. Драйвер для загрузчика на плате. Многие платы используют CH340. Скачать и установить его.
 
 Настройки для загрузчика
+
 ![image](https://github.com/Persivan/RGB-Controller-on-ESP-with-P9813-main/assets/39733368/c5ce921b-8caf-4453-8572-9ef2c0e79f47)
 
-
 Пример сборки для esp8266
+
 ![chrome_DFaIbWTh3C](https://github.com/Persivan/RGB-Controller-on-ESP-with-P9813-main/assets/39733368/eebc576b-c109-482c-870d-52dc4333a7a1)
 
