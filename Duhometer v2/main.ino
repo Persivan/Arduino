@@ -7,7 +7,7 @@
 // Конфигурация
 #define NUM_LEDS 3          // Количество ARGB светодиодов на пине
 #define LED_PIN 10          // Пин ARGB ленты
-#define LED_BRIGHTNESS 100  // Яркость светодиодов 0-255
+#define LED_BRIGHTNESS 10   // Яркость светодиодов 0-255
 #define CO2_PIN_TX 7        // Пин датчика CO2 (TX пин от датчика)
 #define CO2_PIN_RX 6        // Пин датчика CO2 (RX пин от датчика)
 #define TEMP_AND_HUMI_PIN 9 // Пин датчика температуры и влажности
@@ -57,16 +57,15 @@ void loop()
   setDisplayText(); // Установка значений на дисплей
   Serial.println("{" +
                  String("ppm: ") + padStringToLength(String(ppm), 4) + ", " +
-                 String("red: ") + String(color[0]) + ", " +
-                 String("green: ") + String(color[1]) + ", " +
-                 String("blue: ") + String(color[2]) + ", " +
+                 String("red: ") + padStringToLength(String(color[0]), 3) + ", " +
+                 String("green: ") + padStringToLength(String(color[1]), 3) + ", " +
+                 String("blue: ") + padStringToLength(String(color[2]), 3) + ", " +
                  String("temp: ") + padStringToLength(String(temp), 4) + ", " +
                  String("humidity: ") + padStringToLength(String(humidity), 4) +
                  "}");
 
   delay(10000); // Задержка 10 секунд
 }
-
 
 void ppmToColor()
 {
@@ -98,7 +97,6 @@ void ppmToColor()
     error = 1; // Синий, что-то пошло не так
 }
 
-
 void askPPM()
 {
   serialCO2.write(cmd, 9);
@@ -107,7 +105,6 @@ void askPPM()
   int responseLow = (byte)response[3];
   ppm = (256 * responseHigh) + responseLow;
 }
-
 
 void askTempAndhumidity()
 {
@@ -120,7 +117,6 @@ void askTempAndhumidity()
   }
 }
 
-
 void setDisplayText()
 {
   lcd.setCursor(0, 0);
@@ -128,7 +124,6 @@ void setDisplayText()
   lcd.setCursor(0, 1);
   lcd.print(padStringToLength(String(ppm), 4) + " ppm  " + getStatus());
 }
-
 
 void setColor()
 {
@@ -146,7 +141,6 @@ void setColor()
   }
   FastLED.show();
 }
-
 
 // Подгоняет строку под заданный размер (не работает с кириллицей)
 // Пример 1: "abc", 5 => "  abc"
@@ -168,16 +162,22 @@ String padStringToLength(String input, byte length)
   return output;
 }
 
-
 // Все, что более 6 символов не будет умещаться на экране
 String getStatus()
 {
-  if (ppm > 1600) return "Духота";
-  if (ppm > 1200) return " Душно";
-  if (temp > 26) return " Жарко";
-  if (temp < 22) return "Холодно";
-  if (humidity > 60) return "Влажно";
-  if (humidity < 30) return "  Сухо";
-  if (ppm > 800) return "  Норм";
+  if (ppm > 1600)
+    return "Духота";
+  if (ppm > 1200)
+    return " Душно";
+  if (temp > 26)
+    return " Жарко";
+  if (temp < 22)
+    return "Холодно";
+  if (humidity > 60)
+    return "Влажно";
+  if (humidity < 30)
+    return "  Сухо";
+  if (ppm > 800)
+    return "  Норм";
   return "Хорошо";
 }
